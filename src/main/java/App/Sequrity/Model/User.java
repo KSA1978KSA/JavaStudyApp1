@@ -32,7 +32,6 @@ public class User {
     }
 
     public String getLogin() {
-        System.out.println( "getLogin:" + login);
         return login;
     }
 

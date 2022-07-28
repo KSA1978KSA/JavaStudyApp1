@@ -1,6 +1,5 @@
 package App.Sequrity.Controler;
 
-import App.Sequrity.Repository.JwtTokenRepository;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.security.web.csrf.InvalidCsrfTokenException;
 import org.springframework.security.web.csrf.MissingCsrfTokenException;
@@ -16,15 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private JwtTokenRepository tokenRepository;
-
-    public GlobalExceptionHandler(JwtTokenRepository tokenRepository) {
-        this.tokenRepository = tokenRepository;
-    }
 
     @ExceptionHandler({AuthenticationException.class, MissingCsrfTokenException.class, InvalidCsrfTokenException.class, SessionAuthenticationException.class})
     public ErrorInfo handleAuthenticationException(RuntimeException ex, HttpServletRequest request, HttpServletResponse response){
-        this.tokenRepository.clearToken(response);
+
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         return new ErrorInfo(UrlUtils.buildFullRequestUrl(request), "error.authorization");
     }

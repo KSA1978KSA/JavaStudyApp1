@@ -32,7 +32,7 @@ var xhr = new XMLHttpRequest();
 xhr.open('POST', 'Authors/Create', false);
 
 xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
-xhr.setRequestHeader("itfb-csrf-token", "61aa5226-f720-49c0-9414-a424af4b6893");
+xhr.setRequestHeader("ITFB-token", "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhODVlNzliNjE0M2I0N2U2OGQyNmYzMzlhZjlmNWUyZiJ9.0bqbfQT1_WXLlTaEz4hcrjETcp-C_znjMsGEALJmyQw");
 
 let json = JSON.stringify({
 name: 'ksa'

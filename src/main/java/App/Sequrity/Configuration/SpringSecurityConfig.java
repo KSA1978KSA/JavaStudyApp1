@@ -1,7 +1,7 @@
 package App.Sequrity.Configuration;
 
 import App.Sequrity.Filter.JwtCsrfFilter;
-import App.Sequrity.Repository.JwtTokenRepository;
+//import App.Sequrity.Repository.JwtTokenRepository;
 import App.Sequrity.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,8 +25,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService service;
 
+    /*
     @Autowired
     private JwtTokenRepository jwtTokenRepository;
+     */
+
 
     @Autowired
     @Qualifier("handlerExceptionResolver")
@@ -43,7 +46,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
-                .addFilterAt(new JwtCsrfFilter(jwtTokenRepository, resolver), CsrfFilter.class)
+                .addFilterAt(new JwtCsrfFilter(resolver), CsrfFilter.class)
                 .csrf().ignoringAntMatchers("/**")
                 .and()
                 .authorizeRequests()
