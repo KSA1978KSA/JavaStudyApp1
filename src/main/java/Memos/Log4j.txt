@@ -1,0 +1,40 @@
+https://betacode.net/11753/use-logging-in-spring-boot
+
+        LOGGER.trace("This is TRACE");
+        LOGGER.debug("This is DEBUG");
+        LOGGER.info("This is INFO");
+        LOGGER.warn("This is WARN");
+        LOGGER.error("This is ERROR");
+
+Logging Level
+Основывая на уровень серьезности проблемы, Logback делит информацию для записи на 5 уровней (Level), наименее серьезная это TRACE, и самая серьезная это ERROR. Примечание: Имеются некоторые библиотеки Logging, которые делят информацию для записи на 7 разных уровней.
+
+    TRACE
+    DEBUG
+    INFO
+    WARN
+    ERROR
+    FATAL
+    OFF
+
+По умолчанию Spring Boot запсывает только информацию с серьезностью от уровня INFO и выше
+
+
+# Default:
+
+logging.level.root=INFO
+
+Изменить Logging Level в application.properties:
+* application.properties *
+
+
+
+logging.level.root=WARN
+
+Logging File
+Информация logging по умолчанию записана на экране Console, но вы можете конфигурировать, чтобы они были записаны в файлах.
+* application.properties *
+
+
+logging.file=logs/mylog.log
+

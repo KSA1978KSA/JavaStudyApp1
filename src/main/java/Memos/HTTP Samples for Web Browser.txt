@@ -1,0 +1,92 @@
+
+//--- POST HttpRequest JavaScript Sample
+
+
+//------------------------------------------------------------------------
+//--- Get получения токена
+//------------------------------------------------------------------------
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://localhost:8080/auth/login', true, 'anton', '1234');
+
+xhr.withCredentials = true;
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.onreadystatechange = function () {
+   if (xhr.readyState === 4) {
+      console.log(xhr.status);
+      console.log(xhr.responseText);
+   }};
+
+xhr.send();
+//------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------
+//--- Post (для создания автора)
+//------------------------------------------------------------------------
+// 1. Создаём новый объект XMLHttpRequest
+var xhr = new XMLHttpRequest();
+
+// 2. Конфигурируем его: GET-запрос на URL 'phones.json'
+xhr.open('POST', 'Authors/Create', false);
+
+xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+xhr.setRequestHeader("itfb-csrf-token", "61aa5226-f720-49c0-9414-a424af4b6893");
+
+let json = JSON.stringify({
+name: 'ksa'
+});
+
+console.log ("json:" + json);
+
+// 3. Отсылаем запрос
+xhr.send(
+json
+);
+
+
+
+// 4. Если код ответа сервера не 200, то это ошибка
+if (xhr.status != 200) {
+  // обработать ошибку
+  alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+} else {
+  // вывести результат
+  alert( xhr.responseText ); // responseText -- текст ответа.
+}
+
+//------------------------------------------------------------------------
+
+
+
+
+
+
+
+//------------------------------------------------------------------------
+//--- GET Получение списка авторов
+//------------------------------------------------------------------------
+// 1. Создаём новый объект XMLHttpRequest
+var xhr = new XMLHttpRequest();
+
+// 2. Конфигурируем его: GET-запрос на URL 'phones.json'
+xhr.open('GET', 'http://localhost:8080/Authors/GetList', false);
+
+xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+xhr.setRequestHeader("itfb-csrf-token", "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwZTZmODlkZDM1MzQ0N2IwOTBlYjIyYzlmZTMxMDA3ZiIsImlhdCI6MTY1ODgzMzY3OCwibmJmIjoxNjU4ODMzNjc4LCJleHAiOjE2NTg4MzU0Nzh9.y1XIqPnAYl1DDU-tMfW2YacssPedrtF0491jmCiUKZQ");
+
+
+// 3. Отсылаем запрос
+xhr.send();
+
+// 4. Если код ответа сервера не 200, то это ошибка
+if (xhr.status != 200) {
+  // обработать ошибку
+  alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+} else {
+  // вывести результат
+  alert( xhr.responseText ); // responseText -- текст ответа.
+}
+
+//------------------------------------------------------------------------
