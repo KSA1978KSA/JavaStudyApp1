@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import App.Rest.ExceptionHandler.CustomRestException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-public class AuthorControler {
+public class AuthorControler  {
 
 
     private final AuthorService authorService;
@@ -27,7 +28,7 @@ public class AuthorControler {
     }
 
     @PostMapping(value = "/Authors/Create")
-    public ResponseEntity<?> create(@RequestBody AuthorModel authorModel) {
+    public ResponseEntity<?> create(@RequestBody AuthorModel authorModel) throws CustomRestException {
 
         LOGGER.trace("This is TRACE");
         LOGGER.debug("This is DEBUG");
@@ -36,7 +37,13 @@ public class AuthorControler {
         LOGGER.error("This is ERROR");
 
         System.out.println( "Author:" + authorModel.toString());
+
         authorService.create(new Author(authorModel.getName()));
+
+        if (authorModel.getName().equals("Test Error")) {
+            throw new CustomRestException(999, "Test Error End Point /Authors/Create");
+        }
+
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

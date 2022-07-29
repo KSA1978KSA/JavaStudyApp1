@@ -1,5 +1,6 @@
 package App.Sequrity.Controler;
 
+import App.Rest.ExceptionHandler.CustomRestException;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.security.web.csrf.InvalidCsrfTokenException;
 import org.springframework.security.web.csrf.MissingCsrfTokenException;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
-    @ExceptionHandler({AuthenticationException.class, MissingCsrfTokenException.class, InvalidCsrfTokenException.class, SessionAuthenticationException.class})
+    @ExceptionHandler({CustomRestException.class, AuthenticationException.class, MissingCsrfTokenException.class, InvalidCsrfTokenException.class, SessionAuthenticationException.class})
     public ErrorInfo handleAuthenticationException(RuntimeException ex, HttpServletRequest request, HttpServletResponse response){
 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
