@@ -15,11 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 @RestControllerAdvice
 public class RestExceptionHandler
 {
-    @ExceptionHandler(value = { CustomRestException.class })
+    @ExceptionHandler(value = { CustomRestException.class }) //--- на какой класс завязываем обработчик ошибок
     @ResponseStatus(HttpStatus.OK)
-    public ErrorResponse badRequest(CustomRestException ex)
+    public ErrorResponse badRequest(CustomRestException ex) //--- в качестве входных параметров - кастомый класс с Exception
     {
-        return new ErrorResponse(ex.getNumber(), ex.getMessage());
+        return new ErrorResponse(ex.getNumber(), ex.getMessage(), "KSA Test Error");//--- возвращаем экземпляр класса с публичными геттерами, которые превратятся в JSON объект в Response
     }
-
 }

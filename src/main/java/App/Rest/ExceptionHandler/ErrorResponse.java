@@ -5,15 +5,26 @@ public class ErrorResponse
     private int status;
     private String message;
 
+    private String customParam;
+
+    /*
     public ErrorResponse()
     {
         super();
     }
-    public ErrorResponse(int status, String message)
+     */
+
+
+    public ErrorResponse(int status, String message, String customParam)
     {
-        super();
+        //super();
         this.status = status;
         this.message = message;
+        this.customParam = customParam;
+    }
+
+    public String getCustomParam() {
+        return customParam;
     }
 
     public int getStatus()
